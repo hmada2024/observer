@@ -72,28 +72,4 @@ class TaskController extends GetxController {
     isLoading.value = false;
   }
 
-  // إضافة دالة لتحليل مدى التزام المستخدم بالمهام خلال الشهر الأخير
-  Map<String, int> analyzeTasksCompletion() {
-    int totalTasks = 0;
-    int completedTasks = 0;
-
-    for (var week in fardTaskCompletionStatus) {
-      for (var taskCompleted in week) {
-        totalTasks++;
-        if (taskCompleted) completedTasks++;
-      }
-    }
-
-    for (var week in sunnahTaskCompletionStatus) {
-      for (var taskCompleted in week) {
-        totalTasks++;
-        if (taskCompleted) completedTasks++;
-      }
-    }
-
-    return {
-      "totalTasks": totalTasks,
-      "completedTasks": completedTasks,
-    };
-  }
 }
