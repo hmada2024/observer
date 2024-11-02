@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:observer/analytics_page.dart';
 import '../controllers/task_controller.dart';
-import '../const.dart'; 
+import '../const.dart';
 
 class WeeklyTaskSchedule extends StatelessWidget {
   final TaskController taskController = Get.put(TaskController());
@@ -19,7 +20,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
       length: 2,
       initialIndex: 0,
       child: Directionality(
-        textDirection: TextDirection.rtl, 
+        textDirection: TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
             title: Align(
@@ -37,6 +38,14 @@ class WeeklyTaskSchedule extends StatelessWidget {
               unselectedLabelColor: const Color.fromARGB(179, 6, 46, 14),
               labelColor: const Color.fromARGB(255, 7, 28, 148),
             ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.analytics),
+                onPressed: () {
+                  Get.to(() => AnalyticsPage());
+                },
+              ),
+            ],
           ),
           body: TabBarView(
             children: [
