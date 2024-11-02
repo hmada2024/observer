@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'pages/weekly_task_schedule.dart';
-import 'controllers/task_controller.dart'; // استيراد وحدة التحكم
+import 'controllers/task_controller.dart'; 
 
 void main() {
   runApp(ObserverApp());
