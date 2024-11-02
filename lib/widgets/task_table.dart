@@ -1,50 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:observer/pages/custom_home_app_bar.dart';
-import 'package:observer/widgets/task_table.dart';
 import '../controllers/task_controller.dart';
 import '../const.dart';
 
-class HomePage extends StatelessWidget {
+class TaskTable extends StatelessWidget {
+  final List<DateTime> weekDates;
+  final List<String> tasks;
+  final bool isFard;
   final TaskController taskController = Get.put(TaskController());
 
-  HomePage({super.key});
+  TaskTable({super.key, required this.weekDates, required this.tasks, required this.isFard});
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    DateTime firstDayOfWeek = now.subtract(Duration(days: (now.weekday + 1) % 7));
-    List<DateTime> weekDates = List.generate(7, (index) => firstDayOfWeek.add(Duration(days: index)));
-
-    return DefaultTabController(
-      length: 2,
-      initialIndex: 0,
-      child: Directionality(
-        textDirection: TextDirection.rtl, 
-        child: Scaffold(
-          appBar: CustomHomeAppBar(), 
-          body: Column(
-            children: [
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    TaskTable(weekDates: weekDates, tasks: prayers, isFard: true),
-                    TaskTable(weekDates: weekDates, tasks: sunnahTasks, isFard: false),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-
-  Widget buildTaskTable(List<DateTime> weekDates, List<String> tasks, TaskController taskController, bool isFard) {
     return Obx(() {
       if (taskController.isLoading.value) {
         return Center(child: CircularProgressIndicator());
@@ -117,3 +86,4 @@ class HomePage extends StatelessWidget {
       }
     });
   }
+}
