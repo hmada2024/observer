@@ -5,10 +5,10 @@ import 'package:observer/analytics_page.dart';
 import '../controllers/task_controller.dart';
 import '../const.dart';
 
-class WeeklyTaskSchedule extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final TaskController taskController = Get.put(TaskController());
 
-  WeeklyTaskSchedule({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

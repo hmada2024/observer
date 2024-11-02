@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'pages/weekly_task_schedule.dart';
+import 'pages/home_page.dart';
 import 'controllers/task_controller.dart'; 
 
 void main() {
@@ -20,9 +20,9 @@ class ObserverApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WeeklyTaskSchedule(),
+      home: HomePage(),
       routes: {
-        '/weekly': (context) => WeeklyTaskSchedule(),
+        '/weekly': (context) => HomePage(),
       },
     );
   }
