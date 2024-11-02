@@ -50,7 +50,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
                 TableRow(
                   children: [
                     SizedBox.shrink(),
-                    for (var task in tasks)
+                    for (var task in prayers)
                       Container(
                         decoration: BoxDecoration(color: Colors.blueAccent),
                         padding: EdgeInsets.all(8.0),
@@ -76,7 +76,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
                           ],
                         ),
                       ),
-                      for (int i = 0; i < tasks.length; i++)
+                      for (int i = 0; i < prayers.length; i++)
                         Center(
                           child: Obx(() {
                             bool isFuture = taskController.isDateInFuture(weekDates[j]);
