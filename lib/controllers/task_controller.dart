@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class TaskController extends GetxController {
   var taskCompletionStatus = List.generate(7, (index) => List<bool>.filled(5, false)).obs;
-  var isLoading = true.obs; // مؤشر التحميل
+  var isLoading = true.obs; 
 
   @override
   void onInit() {
