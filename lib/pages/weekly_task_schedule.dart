@@ -57,7 +57,10 @@ class WeeklyTaskSchedule extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Table(
-            border: TableBorder.all(),
+            border: TableBorder.all(
+              color: Colors.grey, 
+              width: 3.0, 
+            ),
             children: [
               TableRow(
                 children: [
@@ -79,12 +82,16 @@ class WeeklyTaskSchedule extends StatelessWidget {
               for (int j = 0; j < 7; j++)
                 TableRow(
                   children: [
-                    Center(
-                      child: Column(
-                        children: [
-                          Text(daysOfWeek[j], textAlign: TextAlign.center), 
-                          Text(intl.DateFormat('dd/MM').format(weekDates[j]), textAlign: TextAlign.center), 
-                        ],
+                    Container(
+                      decoration: BoxDecoration(color: Colors.green), 
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text(daysOfWeek[j], textAlign: TextAlign.center), 
+                            Text(intl.DateFormat('dd/MM').format(weekDates[j]), textAlign: TextAlign.center), 
+                          ],
+                        ),
                       ),
                     ),
                     for (int i = 0; i < tasks.length; i++)
