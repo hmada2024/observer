@@ -4,6 +4,7 @@ import 'dart:convert';
 
 class TaskController extends GetxController {
   var taskCompletionStatus = List.generate(7, (index) => List<bool>.filled(5, false)).obs;
+  var isLoading = true.obs; // مؤشر التحميل
 
   @override
   void onInit() {
@@ -17,14 +18,15 @@ class TaskController extends GetxController {
 
   void toggleTaskCompletion(int dayIndex, int taskIndex, bool isCompleted) {
     taskCompletionStatus[dayIndex][taskIndex] = isCompleted;
-    taskCompletionStatus.refresh();
+    taskCompletionStatus.refresh(); // تحديث الواجهة بشكل صحيح
     saveTasks();
   }
 
-  // تعديل الفانكشن للتحقق مما إذا كان التاريخ في المستقبل وليس اليوم الحالي
   bool isDateInFuture(DateTime date) {
     DateTime now = DateTime.now();
-    return date.isAfter(DateTime(now.year, now.month, now.day).add(Duration(days: 1)));
+    DateTime today = DateTime(now.year, now.month, now.day);
+    DateTime comparedDate = DateTime(date.year, date.month, date.day); // تجاهل التوقيت والتعامل مع التواريخ فقط
+    return comparedDate.isAfter(today);
   }
 
   void saveTasks() async {
@@ -40,5 +42,6 @@ class TaskController extends GetxController {
         jsonDecode(status).map((item) => List<bool>.from(item))
       );
     }
+    isLoading.value = false; // إخفاء مؤشر التحميل بعد تحميل البيانات
   }
 }
