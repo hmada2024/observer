@@ -17,9 +17,9 @@ const List<String> prayers = [
 ];
 
 const List<String> sunnahTasks = [
-  "Morning remembrances",
-  "Evening prayers",
-  "Daily reading of the Quran",
-  "Prophet's fasting",
-  "Voluntary charity"
+  "أذكار الصباح",
+  "ورد القرآن",
+  "أذكار المساء",
+  "ألذكر اليومي",
+  "التعلم الذاتي"
 ];

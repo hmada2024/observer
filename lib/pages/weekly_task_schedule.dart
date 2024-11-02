@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../controllers/task_controller.dart';
-import '../const.dart';
+import '../const.dart'; 
 
 class WeeklyTaskSchedule extends StatelessWidget {
   final TaskController taskController = Get.put(TaskController());
@@ -17,7 +17,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
 
     return DefaultTabController(
       length: 2,
-      initialIndex: 0, // ضبط الفرائض كقيمة افتراضية
+      initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Weekly Task Schedule', textAlign: TextAlign.right),
