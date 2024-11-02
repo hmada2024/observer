@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 import '../controllers/task_controller.dart';
 import '../const.dart'; 
 
@@ -18,21 +18,32 @@ class WeeklyTaskSchedule extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       initialIndex: 0,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Weekly Task Schedule', textAlign: TextAlign.right),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: 'الفرائض'),
-              Tab(text: 'السنن'),
+      child: Directionality(
+        textDirection: TextDirection.rtl, 
+        child: Scaffold(
+          appBar: AppBar(
+            title: Align(
+              alignment: Alignment.center,
+              child: Text('الجدول الأسبوعي'),
+            ),
+            bottom: TabBar(
+              tabs: [
+                Tab(text: 'الفرائض'),
+                Tab(text: 'السنن'),
+              ],
+              indicatorColor: const Color.fromARGB(255, 7, 28, 148),
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+              unselectedLabelColor: const Color.fromARGB(179, 6, 46, 14),
+              labelColor: const Color.fromARGB(255, 7, 28, 148),
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              buildTaskTable(weekDates, prayers, taskController, true),
+              buildTaskTable(weekDates, sunnahTasks, taskController, false),
             ],
           ),
-        ),
-        body: TabBarView(
-          children: [
-            buildTaskTable(weekDates, prayers, taskController, true),
-            buildTaskTable(weekDates, sunnahTasks, taskController, false),
-          ],
         ),
       ),
     );
@@ -58,8 +69,8 @@ class WeeklyTaskSchedule extends StatelessWidget {
                       child: Center(
                         child: Text(
                           task,
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 255, 255, 255)),
+                          textAlign: TextAlign.center, 
                         ),
                       ),
                     ),
@@ -71,8 +82,8 @@ class WeeklyTaskSchedule extends StatelessWidget {
                     Center(
                       child: Column(
                         children: [
-                          Text(daysOfWeek[j], textAlign: TextAlign.right),
-                          Text(DateFormat('dd/MM').format(weekDates[j]), textAlign: TextAlign.right),
+                          Text(daysOfWeek[j], textAlign: TextAlign.center), 
+                          Text(intl.DateFormat('dd/MM').format(weekDates[j]), textAlign: TextAlign.center), 
                         ],
                       ),
                     ),
@@ -81,7 +92,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
                         child: Obx(() {
                           bool isFuture = taskController.isDateInFuture(weekDates[j]);
                           return Tooltip(
-                            message: isFuture ? "لا يمكن تعديل المهام للمستقبل" : "اضغط لتعديل الحالة",
+                            message: isFuture ? "لا يمكن تعديل الحالة للمستقبل" : "اضغط لتعديل الحالة",
                             child: Checkbox(
                               value: taskController.isTaskCompleted(isFard, j, i),
                               onChanged: isFuture ? null : (bool? value) {
