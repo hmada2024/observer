@@ -108,7 +108,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
                                 onChanged: isFuture ? null : (bool? value) {
                                   taskController.toggleTaskCompletion(isFard, j, i, value!);
                                 },
-                                activeColor: isFuture ? Colors.grey : Colors.blue,
+                                activeColor: isFuture ? Colors.grey : Colors.blue[800],
                               ),
                             );
                           }),
