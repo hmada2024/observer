@@ -65,12 +65,33 @@ class TaskTable extends StatelessWidget {
                         child: Center(
                           child: Obx(() {
                             bool isFuture = taskController.isDateInFuture(weekDates[j]);
-                            return Tooltip(
-                              message: isFuture ? "لا يمكن تعديل الحالة للمستقبل" : "اضغط لتعديل الحالة",
+                            return GestureDetector(
+                              onTap: () {
+                                if (isFuture) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("لا يمكن تعديل الحالة للمستقبل"),
+                                    ),
+                                  );
+                                } else {
+                                  bool isCompleted = !taskController.isTaskCompleted(isFard, j, i);
+                                  taskController.toggleTaskCompletion(isFard, j, i, isCompleted);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(isCompleted ? "بارك الله فيك" : "لقد غيرت الحالة"),
+                                    ),
+                                  );
+                                }
+                              },
                               child: Checkbox(
                                 value: taskController.isTaskCompleted(isFard, j, i),
                                 onChanged: isFuture ? null : (bool? value) {
                                   taskController.toggleTaskCompletion(isFard, j, i, value!);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(value ? "بارك الله فيك" : "لقد غيرت الحالة"),
+                                    ),
+                                  );
                                 },
                                 activeColor: isFuture ? Colors.grey : Colors.blue[800],
                               ),
