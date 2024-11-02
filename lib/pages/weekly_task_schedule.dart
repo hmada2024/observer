@@ -46,7 +46,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
             child: Table(
               border: TableBorder.all(),
               children: [
-                // رؤوس الصفوف (المهام)
+                
                 TableRow(
                   children: [
                     SizedBox.shrink(),
@@ -64,7 +64,6 @@ class WeeklyTaskSchedule extends StatelessWidget {
                       ),
                   ],
                 ),
-                // الصفوف العمودية للأيام والتشيك بوكس
                 for (int j = 0; j < 7; j++)
                   TableRow(
                     children: [

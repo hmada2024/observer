@@ -18,7 +18,7 @@ class TaskController extends GetxController {
 
   void toggleTaskCompletion(int dayIndex, int taskIndex, bool isCompleted) {
     taskCompletionStatus[dayIndex][taskIndex] = isCompleted;
-    taskCompletionStatus.refresh(); // تحديث الواجهة بشكل صحيح
+    taskCompletionStatus.refresh(); 
     saveTasks();
   }
 
@@ -42,6 +42,6 @@ class TaskController extends GetxController {
         jsonDecode(status).map((item) => List<bool>.from(item))
       );
     }
-    isLoading.value = false; // إخفاء مؤشر التحميل بعد تحميل البيانات
+    isLoading.value = false; 
   }
 }
