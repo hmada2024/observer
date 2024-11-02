@@ -22,7 +22,7 @@ class ObserverApp extends StatelessWidget {
       ),
       home: HomePage(),
       routes: {
-        '/weekly': (context) => HomePage(),
+        'home_page': (context) => HomePage(),
       },
     );
   }
