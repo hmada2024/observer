@@ -20,7 +20,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
       'الجمعة'
     ];
 
-    List<String> tasks = [
+    List<String> prayers = [
       "صلاة الفجر في المسجد",
       "صلاة الظهر في المسجد",
       "صلاة العصر في المسجد",
