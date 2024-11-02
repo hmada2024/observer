@@ -5,7 +5,7 @@ import 'dart:convert';
 class TaskController extends GetxController {
   var fardTaskCompletionStatus = List.generate(7, (index) => List<bool>.filled(5, false)).obs;
   var sunnahTaskCompletionStatus = List.generate(7, (index) => List<bool>.filled(5, false)).obs;
-  var isLoading = true.obs; // مؤشر التحميل
+  var isLoading = true.obs;
 
   @override
   void onInit() {
@@ -22,10 +22,10 @@ class TaskController extends GetxController {
   void toggleTaskCompletion(bool isFard, int dayIndex, int taskIndex, bool isCompleted) {
     if (isFard) {
       fardTaskCompletionStatus[dayIndex][taskIndex] = isCompleted;
-      fardTaskCompletionStatus.refresh(); // تحديث الواجهة بشكل صحيح
+      fardTaskCompletionStatus.refresh();
     } else {
       sunnahTaskCompletionStatus[dayIndex][taskIndex] = isCompleted;
-      sunnahTaskCompletionStatus.refresh(); // تحديث الواجهة بشكل صحيح
+      sunnahTaskCompletionStatus.refresh();
     }
     saveTasks(isFard);
   }
@@ -33,7 +33,7 @@ class TaskController extends GetxController {
   bool isDateInFuture(DateTime date) {
     DateTime now = DateTime.now();
     DateTime today = DateTime(now.year, now.month, now.day);
-    DateTime comparedDate = DateTime(date.year, date.month, date.day); // تجاهل التوقيت والتعامل مع التواريخ فقط
+    DateTime comparedDate = DateTime(date.year, date.month, date.day);
     return comparedDate.isAfter(today);
   }
 
@@ -62,6 +62,31 @@ class TaskController extends GetxController {
       );
     }
 
-    isLoading.value = false; // إخفاء مؤشر التحميل بعد تحميل البيانات
+    isLoading.value = false;
+  }
+
+  // إضافة دالة لتحليل مدى التزام المستخدم بالمهام خلال الشهر الأخير
+  Map<String, int> analyzeTasksCompletion() {
+    int totalTasks = 0;
+    int completedTasks = 0;
+
+    for (var week in fardTaskCompletionStatus) {
+      for (var taskCompleted in week) {
+        totalTasks++;
+        if (taskCompleted) completedTasks++;
+      }
+    }
+
+    for (var week in sunnahTaskCompletionStatus) {
+      for (var taskCompleted in week) {
+        totalTasks++;
+        if (taskCompleted) completedTasks++;
+      }
+    }
+
+    return {
+      "totalTasks": totalTasks,
+      "completedTasks": completedTasks,
+    };
   }
 }
