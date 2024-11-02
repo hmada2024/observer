@@ -25,8 +25,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
       "صلاة الظهر في المسجد",
       "صلاة العصر في المسجد",
       "صلاة المغرب في المسجد",
-      "صلاة العشاء في المسجدء",
-    
+      "صلاة العشاء في المسجد"
     ];
 
     DateTime now = DateTime.now();
@@ -46,7 +45,6 @@ class WeeklyTaskSchedule extends StatelessWidget {
             child: Table(
               border: TableBorder.all(),
               children: [
-                
                 TableRow(
                   children: [
                     SizedBox.shrink(),
@@ -86,7 +84,7 @@ class WeeklyTaskSchedule extends StatelessWidget {
                                 onChanged: isFuture ? null : (bool? value) {
                                   taskController.toggleTaskCompletion(j, i, value!);
                                 },
-                                activeColor: isFuture ? Colors.grey : Colors.blue, // تغيير لون المربع
+                                activeColor: isFuture ? Colors.grey : Colors.blue,
                               ),
                             );
                           }),

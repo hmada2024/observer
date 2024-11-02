@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class TaskController extends GetxController {
   var taskCompletionStatus = List.generate(7, (index) => List<bool>.filled(5, false)).obs;
-  var isLoading = true.obs; 
+  var isLoading = true.obs;
 
   @override
   void onInit() {
@@ -18,14 +18,14 @@ class TaskController extends GetxController {
 
   void toggleTaskCompletion(int dayIndex, int taskIndex, bool isCompleted) {
     taskCompletionStatus[dayIndex][taskIndex] = isCompleted;
-    taskCompletionStatus.refresh(); 
+    taskCompletionStatus.refresh();
     saveTasks();
   }
 
   bool isDateInFuture(DateTime date) {
     DateTime now = DateTime.now();
     DateTime today = DateTime(now.year, now.month, now.day);
-    DateTime comparedDate = DateTime(date.year, date.month, date.day); // تجاهل التوقيت والتعامل مع التواريخ فقط
+    DateTime comparedDate = DateTime(date.year, date.month, date.day);
     return comparedDate.isAfter(today);
   }
 
@@ -42,6 +42,6 @@ class TaskController extends GetxController {
         jsonDecode(status).map((item) => List<bool>.from(item))
       );
     }
-    isLoading.value = false; 
+    isLoading.value = false;
   }
 }
