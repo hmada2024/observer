@@ -58,8 +58,8 @@ class WeeklyTaskSchedule extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Table(
             border: TableBorder.all(
-              color: Colors.grey, 
-              width: 3.0, 
+              color: const Color.fromARGB(255, 71, 6, 28), 
+              width: 2.0, 
             ),
             children: [
               TableRow(
@@ -95,20 +95,24 @@ class WeeklyTaskSchedule extends StatelessWidget {
                       ),
                     ),
                     for (int i = 0; i < tasks.length; i++)
-                      Center(
-                        child: Obx(() {
-                          bool isFuture = taskController.isDateInFuture(weekDates[j]);
-                          return Tooltip(
-                            message: isFuture ? "لا يمكن تعديل الحالة للمستقبل" : "اضغط لتعديل الحالة",
-                            child: Checkbox(
-                              value: taskController.isTaskCompleted(isFard, j, i),
-                              onChanged: isFuture ? null : (bool? value) {
-                                taskController.toggleTaskCompletion(isFard, j, i, value!);
-                              },
-                              activeColor: isFuture ? Colors.grey : Colors.blue,
-                            ),
-                          );
-                        }),
+                      Container(
+                        decoration: BoxDecoration(color: Colors.white), 
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Obx(() {
+                            bool isFuture = taskController.isDateInFuture(weekDates[j]);
+                            return Tooltip(
+                              message: isFuture ? "لا يمكن تعديل الحالة للمستقبل" : "اضغط لتعديل الحالة",
+                              child: Checkbox(
+                                value: taskController.isTaskCompleted(isFard, j, i),
+                                onChanged: isFuture ? null : (bool? value) {
+                                  taskController.toggleTaskCompletion(isFard, j, i, value!);
+                                },
+                                activeColor: isFuture ? Colors.grey : Colors.blue,
+                              ),
+                            );
+                          }),
+                        ),
                       ),
                   ],
                 ),
